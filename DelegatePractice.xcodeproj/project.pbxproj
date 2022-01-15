@@ -14,6 +14,8 @@
 		6CAD229F2790645200FB46CF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6CAD229D2790645200FB46CF /* LaunchScreen.storyboard */; };
 		6CD3731D27915649009D64BE /* LoginScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD3731C27915649009D64BE /* LoginScreenVC.swift */; };
 		6CD373202791571C009D64BE /* SetupConstrainsToViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD3731F2791571C009D64BE /* SetupConstrainsToViews.swift */; };
+		6CFD33CE2792C4E20001C209 /* MainScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CFD33CD2792C4E20001C209 /* MainScreenVC.swift */; };
+		6CFD33D02792C5010001C209 /* RegistrationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CFD33CF2792C5010001C209 /* RegistrationVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		6CAD22A02790645200FB46CF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6CD3731C27915649009D64BE /* LoginScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScreenVC.swift; sourceTree = "<group>"; };
 		6CD3731F2791571C009D64BE /* SetupConstrainsToViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupConstrainsToViews.swift; sourceTree = "<group>"; };
+		6CFD33CD2792C4E20001C209 /* MainScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenVC.swift; sourceTree = "<group>"; };
+		6CFD33CF2792C5010001C209 /* RegistrationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +100,8 @@
 			isa = PBXGroup;
 			children = (
 				6CD3731C27915649009D64BE /* LoginScreenVC.swift */,
+				6CFD33CF2792C5010001C209 /* RegistrationVC.swift */,
+				6CFD33CD2792C4E20001C209 /* MainScreenVC.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -191,7 +197,9 @@
 				6CD3731D27915649009D64BE /* LoginScreenVC.swift in Sources */,
 				6C85F7272791C6C000C78D01 /* UIStackViewExtension.swift in Sources */,
 				6CAD22932790645200FB46CF /* AppDelegate.swift in Sources */,
+				6CFD33CE2792C4E20001C209 /* MainScreenVC.swift in Sources */,
 				6CD373202791571C009D64BE /* SetupConstrainsToViews.swift in Sources */,
+				6CFD33D02792C5010001C209 /* RegistrationVC.swift in Sources */,
 				6CAD22952790645200FB46CF /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

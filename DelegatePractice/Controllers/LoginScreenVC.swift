@@ -23,19 +23,12 @@ class LoginScreenVC: UIViewController {
     //background view color
     let backgroundView: UIView = {
         let backgroundView = UIView()
-        backgroundView.backgroundColor = .white
+       // backgroundView.backgroundColor = .white
+        backgroundView.backgroundColor = UIColor(patternImage: UIImage(named: "LoginBackground")!)
+        backgroundView.contentMode = .scaleToFill
         backgroundView.translatesAutoresizingMaskIntoConstraints = false
         return backgroundView
     }()
-    
-    
-    
-    // logo Image
-    //    let logoImage: UIImage = {
-    //        let logo = UIImage(named: "LoginBackground")
-    //
-    //        return logo!
-    //    }()
     
     
     //login label
@@ -72,8 +65,11 @@ class LoginScreenVC: UIViewController {
         signInButton.setTitle("SignIn", for: .normal)
         signInButton.titleColor(for: .normal)
         signInButton.layer.cornerRadius = 10
+        signInButton.addTarget(self, action: #selector(signInButtonTapped), for: .touchUpInside)
+        signInButton.translatesAutoresizingMaskIntoConstraints = false
         return signInButton
     }()
+    
     //singUp button
     let signUpButton: UIButton = {
         let signUpbutton = UIButton()
@@ -81,8 +77,10 @@ class LoginScreenVC: UIViewController {
         signUpbutton.setTitle("SignUp", for: .normal)
         signUpbutton.titleColor(for: .normal)
         signUpbutton.layer.cornerRadius = 10
-        
+        signUpbutton.addTarget(self, action: #selector(signUpButtonTapped), for: .touchUpInside)
+        signUpbutton.translatesAutoresizingMaskIntoConstraints = false
         return signUpbutton
+        
     }()
     
     var textFieldsStackView = UIStackView()
@@ -92,10 +90,27 @@ class LoginScreenVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         setupItemsAtLoginVc()
         setupConstrLoginVC()
     }
+    
+    
+    //MARK: - button methods
+    
+    @objc func signInButtonTapped(){
+        let signIn = MainScreenVC()
+        self.present(signIn, animated: true, completion: nil)
+    }
+    
+    @objc func signUpButtonTapped(){
+        let signUp = RegistrationVC()
+        self.present(signUp, animated: true, completion: nil)
+        
+    }
+    
+    
+    
+    //MARK: subviews -
     
     func setupItemsAtLoginVc(){
         
