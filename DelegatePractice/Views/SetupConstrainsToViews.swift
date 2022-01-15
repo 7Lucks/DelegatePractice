@@ -48,6 +48,7 @@ extension LoginScreenVC{
     }//end setupConstraintsforItems()
 }
 
+//MARK: - registrationVC menu
 
 extension RegistrationVC{
     func setupConstrRegistrationVC(){
@@ -70,5 +71,30 @@ extension RegistrationVC{
             registrationLabel.centerXAnchor.constraint(equalTo: backgroundView.centerXAnchor),
             registrationLabel.topAnchor.constraint(equalTo: backgroundView.topAnchor, constant: 100)
         ])
+        
+        NSLayoutConstraint.activate([
+//            textFieldsStackView.centerXAnchor.constraint(equalTo: backgroundView.centerXAnchor),
+            textFieldsStackView.topAnchor.constraint(equalTo: registrationLabel.bottomAnchor, constant: 25),
+            textFieldsStackView.leadingAnchor.constraint(equalTo: backgroundView.leadingAnchor, constant: 10),
+            textFieldsStackView.trailingAnchor.constraint(equalTo: backgroundView.trailingAnchor, constant: -10)
+
+        ])
+        
+        NSLayoutConstraint.activate([
+            confirmButton.topAnchor.constraint(equalTo: textFieldsStackView.bottomAnchor,constant: 50),
+            confirmButton.leadingAnchor.constraint(equalTo: backgroundView.leadingAnchor, constant: 10),
+            confirmButton.trailingAnchor.constraint(equalTo: backgroundView.trailingAnchor, constant: -10),
+            confirmButton.widthAnchor.constraint(equalTo: textFieldsStackView.widthAnchor),
+            confirmButton.centerXAnchor.constraint(equalTo: textFieldsStackView.centerXAnchor)
+        ])
+        
+        NSLayoutConstraint.activate([
+            backButton.topAnchor.constraint(equalTo: confirmButton.bottomAnchor,constant: 10),
+            backButton.leadingAnchor.constraint(equalTo: backgroundView.leadingAnchor, constant: 10),
+            backButton.trailingAnchor.constraint(equalTo: backgroundView.trailingAnchor, constant: -10),
+            backButton.widthAnchor.constraint(equalTo: textFieldsStackView.widthAnchor),
+            backButton.centerXAnchor.constraint(equalTo: textFieldsStackView.centerXAnchor)
+        ])
+        
     }
 }

@@ -37,18 +37,68 @@ class RegistrationVC: UIViewController {
         return regLabel
     }()
     
+    let nameTF: UITextField = {
+        let nameTf = UITextField()
+        nameTf.borderStyle = .roundedRect
+        nameTf.backgroundColor = .lightGray
+        nameTf.placeholder = "Enter your name"
+        return nameTf
+    }()
+    
+    let passwordTF: UITextField = {
+        let passwdTf = UITextField()
+        passwdTf.borderStyle = .roundedRect
+        passwdTf.backgroundColor = .lightGray
+        passwdTf.placeholder = "Enter your password"
+        return passwdTf
+    }()
+    
+    let emailTF: UITextField = {
+        let emailTf = UITextField()
+        emailTf.borderStyle = .roundedRect
+        emailTf.backgroundColor = .lightGray
+        emailTf.placeholder = "Enter your E-mail"
+        return emailTf
+    }()
+    
+    let confirmButton: UIButton = {
+        let confButton = UIButton()
+        confButton.backgroundColor = .systemGreen
+        confButton.setTitle("Confirm", for: .normal)
+        confButton.layer.cornerRadius = 10
+        confButton.addTarget(self, action: #selector(confirmButtonTapped), for: .touchUpInside)
+        confButton.translatesAutoresizingMaskIntoConstraints = false
+        return confButton
+    }()
+    
+    let backButton: UIButton = {
+        let confButton = UIButton()
+        confButton.backgroundColor = .systemRed
+        confButton.setTitle("Back", for: .normal)
+        confButton.layer.cornerRadius = 10
+        confButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
+        confButton.translatesAutoresizingMaskIntoConstraints = false
+        return confButton
+    }()
     
     
+    var textFieldsStackView = UIStackView()
     
+    @objc func confirmButtonTapped(){
+        
+    }
     
+    @objc func backButtonTapped(){
+        dismiss(animated: true, completion: nil)
+    }
     
+    //MARK: - viewDidLoad()
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupItemsAtRegistrationVc()
         setupConstrRegistrationVC()
 
-    
     }
     
     
@@ -56,6 +106,10 @@ class RegistrationVC: UIViewController {
         view.addSubview(scrollView)
         scrollView.addSubview(backgroundView)
         backgroundView.addSubview(registrationLabel)
+        textFieldsStackView = UIStackView(arrangedSubviews: [nameTF, passwordTF,emailTF], axis: .vertical, spacing: 10, distribution: .fillEqually)
+        backgroundView.addSubview(textFieldsStackView)
+        backgroundView.addSubview(confirmButton)
+        backgroundView.addSubview(backButton)
     }
 
 }

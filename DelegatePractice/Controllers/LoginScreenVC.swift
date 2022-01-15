@@ -80,11 +80,13 @@ class LoginScreenVC: UIViewController {
         signUpbutton.addTarget(self, action: #selector(signUpButtonTapped), for: .touchUpInside)
         signUpbutton.translatesAutoresizingMaskIntoConstraints = false
         return signUpbutton
-        
     }()
     
+  //MARK: stackview-
     var textFieldsStackView = UIStackView()
     var buttonsStackView = UIStackView()
+    
+    
     
     //MARK:  viewDidLoad() -
     override func viewDidLoad() {
@@ -122,6 +124,7 @@ class LoginScreenVC: UIViewController {
         backgroundView.addSubview(textFieldsStackView)
         buttonsStackView = UIStackView(arrangedSubviews: [signInButton, signUpButton], axis: .horizontal, spacing: 15, distribution: .fillEqually)
         backgroundView.addSubview(buttonsStackView)
+        
     }// end of setupItemsAtLoginVc()
     
     
