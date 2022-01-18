@@ -72,9 +72,9 @@
 			children = (
 				6CD3732127915791009D64BE /* appDelegate_SceneDelegate */,
 				6C85F7252791C69400C78D01 /* Extensions */,
+				6CD3731727915579009D64BE /* Models */,
 				6CD373192791557F009D64BE /* Controllers */,
 				6CD373182791557C009D64BE /* Views */,
-				6CD3731727915579009D64BE /* Models */,
 				6CAD22A02790645200FB46CF /* Info.plist */,
 			);
 			path = DelegatePractice;
