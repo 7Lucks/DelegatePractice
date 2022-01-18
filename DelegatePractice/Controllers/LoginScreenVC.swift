@@ -94,6 +94,7 @@ class LoginScreenVC: UIViewController {
         
         setupItemsAtLoginVc()
         setupConstrLoginVC()
+        keyboardObserverNotification()
     }
     
     
@@ -126,7 +127,32 @@ class LoginScreenVC: UIViewController {
         backgroundView.addSubview(buttonsStackView)
         
     }// end of setupItemsAtLoginVc()
-    
-    
-    
+   
 } //end of LoginVC
+
+extension LoginScreenVC{
+    
+    func keyboardObserverNotification(){
+        // observer to keyboard will show notification
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        
+        // observer to keyboard will hide notification
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    // MARK: QUESTION : loginLabel.topAnchor.constraint(equalTo: 250)
+    //when keyboard shown
+    @objc func keyboardWillShow(notification: Notification){
+//        print ("keyboard show")
+        let userInfo = notification.userInfo //обращение к юзер инфо и через юзер инфо достаю высоту клавиатуры
+        let keyboardHeight = (userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue //получаем высоту клавиатуры в формате CGRect
+        scrollView.contentOffset = CGPoint(x: 0, y: keyboardHeight.height / 3)
+//        loginLabel.topAnchor.constraint(equalTo: 250) // как сдвинуть отдельный элемент при вызове контент оффсета у скроллвью
+    }
+    // when keyboard hidden
+    @objc func keyboardWillHide(notification: Notification){
+//        print("keyboard hide")
+        // при скрытии клавы просто возвращаем content offset to 0
+        scrollView.contentOffset = CGPoint.zero
+    }
+}
