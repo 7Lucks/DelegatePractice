@@ -95,6 +95,7 @@ class LoginScreenVC: UIViewController {
         setupItemsAtLoginVc()
         setupConstrLoginVC()
         keyboardObserverNotification()
+        textFieldDelegates()
     }
     
     
@@ -140,6 +141,12 @@ extension LoginScreenVC{
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
+    //remove keyboard notification when Deinit VC
+    func removeKeyboardNotifications(){
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
     // MARK: QUESTION : loginLabel.topAnchor.constraint(equalTo: 250)
     //when keyboard shown
     @objc func keyboardWillShow(notification: Notification){
@@ -155,4 +162,31 @@ extension LoginScreenVC{
         // при скрытии клавы просто возвращаем content offset to 0
         scrollView.contentOffset = CGPoint.zero
     }
+    
+}
+
+extension LoginScreenVC: UITextFieldDelegate{
+    
+    func textFieldDelegates(){
+        loginTF.delegate = self
+        passwdTF.delegate = self
+    }
+    //hide keyboard when end editing and touch outside
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
+        //  change field when Return tapped, and final field will hide keyboard
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == loginTF{
+            passwdTF.becomeFirstResponder()
+        }else if textField == passwdTF{
+            textField.resignFirstResponder()
+
+//            signInButtonTapped()
+        }
+        return true
+    }
+    
+    
 }
