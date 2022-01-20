@@ -6,7 +6,6 @@
 //
 
 import UIKit
-//setup constrains for login vc
 
 extension LoginScreenVC{
     func setupConstrLoginVC() {
@@ -29,20 +28,25 @@ extension LoginScreenVC{
         NSLayoutConstraint.activate([
             textFieldsStackView.centerXAnchor.constraint(equalTo: backgroundView.centerXAnchor),
             textFieldsStackView.centerYAnchor.constraint(equalTo: backgroundView.centerYAnchor),
-            textFieldsStackView.leadingAnchor.constraint(equalTo: backgroundView.leadingAnchor, constant: 10),
-            textFieldsStackView.trailingAnchor.constraint(equalTo: backgroundView.trailingAnchor, constant: -10)
+            textFieldsStackView.leadingAnchor.constraint(equalTo: backgroundView.safeAreaLayoutGuide.leadingAnchor, constant: 10),
+            textFieldsStackView.trailingAnchor.constraint(equalTo: backgroundView.safeAreaLayoutGuide.trailingAnchor, constant: -10)
          
         ])
+        //если над опускать лейбл на главном экране
+//        topAnchor =  welcomeLabel.topAnchor.constraint(equalTo: backgroundView.safeAreaLayoutGuide.topAnchor, constant: 200)
+//        topAnchor?.isActive = true
         
         NSLayoutConstraint.activate([
-            loginLabel.centerXAnchor.constraint(equalTo: backgroundView.centerXAnchor),
-            loginLabel.topAnchor.constraint(equalTo: backgroundView.topAnchor, constant: 100)
+            
+            welcomeLabel.centerXAnchor.constraint(equalTo: backgroundView.safeAreaLayoutGuide.centerXAnchor),
+            welcomeLabel.topAnchor.constraint(equalTo: backgroundView.safeAreaLayoutGuide.topAnchor, constant: 100),
+            welcomeLabel.bottomAnchor.constraint(equalTo: textFieldsStackView.topAnchor, constant: 10)
         ])
         
         NSLayoutConstraint.activate([
-            buttonsStackView.leadingAnchor.constraint(equalTo: backgroundView.leadingAnchor, constant: 10),
-            buttonsStackView.trailingAnchor.constraint(equalTo: backgroundView.trailingAnchor, constant: -10),
-            buttonsStackView.topAnchor.constraint(equalTo: textFieldsStackView.bottomAnchor, constant: 20)
+            buttonsStackView.leadingAnchor.constraint(equalTo: backgroundView.safeAreaLayoutGuide.leadingAnchor, constant: 10),
+            buttonsStackView.trailingAnchor.constraint(equalTo: backgroundView.safeAreaLayoutGuide.trailingAnchor, constant: -10),
+            buttonsStackView.topAnchor.constraint(equalTo: textFieldsStackView.safeAreaLayoutGuide.bottomAnchor, constant: 20)
             
         ])
     }//end setupConstraintsforItems()
@@ -68,32 +72,32 @@ extension RegistrationVC{
         ])
         
         NSLayoutConstraint.activate([
-            registrationLabel.centerXAnchor.constraint(equalTo: backgroundView.centerXAnchor),
-            registrationLabel.topAnchor.constraint(equalTo: backgroundView.topAnchor, constant: 150)
+            registrationLabel.centerXAnchor.constraint(equalTo: backgroundView.safeAreaLayoutGuide.centerXAnchor),
+            registrationLabel.topAnchor.constraint(equalTo: backgroundView.safeAreaLayoutGuide.topAnchor, constant: 50)
         ])
         
         NSLayoutConstraint.activate([
 //            textFieldsStackView.centerXAnchor.constraint(equalTo: backgroundView.centerXAnchor),
-            textFieldsStackView.topAnchor.constraint(equalTo: registrationLabel.bottomAnchor, constant: 25),
-            textFieldsStackView.leadingAnchor.constraint(equalTo: backgroundView.leadingAnchor, constant: 20),
-            textFieldsStackView.trailingAnchor.constraint(equalTo: backgroundView.trailingAnchor, constant: -20)
+            textFieldsStackView.topAnchor.constraint(equalTo: registrationLabel.safeAreaLayoutGuide.bottomAnchor, constant: 20),
+            textFieldsStackView.leadingAnchor.constraint(equalTo: backgroundView.safeAreaLayoutGuide.leadingAnchor, constant: 20),
+            textFieldsStackView.trailingAnchor.constraint(equalTo: backgroundView.safeAreaLayoutGuide.trailingAnchor, constant: -20)
 
         ])
         
         // TODO: объединить кнопки в стеквью
         NSLayoutConstraint.activate([
             confirmButton.topAnchor.constraint(equalTo: textFieldsStackView.bottomAnchor,constant: 50),
-            confirmButton.leadingAnchor.constraint(equalTo: backgroundView.leadingAnchor, constant: 20),
-            confirmButton.trailingAnchor.constraint(equalTo: backgroundView.trailingAnchor, constant: -20),
-            confirmButton.widthAnchor.constraint(equalTo: textFieldsStackView.widthAnchor),
+            confirmButton.leadingAnchor.constraint(equalTo: backgroundView.safeAreaLayoutGuide.leadingAnchor, constant: 20),
+            confirmButton.trailingAnchor.constraint(equalTo: backgroundView.safeAreaLayoutGuide.trailingAnchor, constant: -20),
+            confirmButton.widthAnchor.constraint(equalTo: textFieldsStackView.safeAreaLayoutGuide.widthAnchor),
             confirmButton.centerXAnchor.constraint(equalTo: textFieldsStackView.centerXAnchor)
         ])
         
         NSLayoutConstraint.activate([
             backButton.topAnchor.constraint(equalTo: confirmButton.bottomAnchor,constant: 10),
-            backButton.leadingAnchor.constraint(equalTo: backgroundView.leadingAnchor, constant: 20),
-            backButton.trailingAnchor.constraint(equalTo: backgroundView.trailingAnchor, constant: -20),
-            backButton.widthAnchor.constraint(equalTo: textFieldsStackView.widthAnchor),
+            backButton.leadingAnchor.constraint(equalTo: backgroundView.safeAreaLayoutGuide.leadingAnchor, constant: 20),
+            backButton.trailingAnchor.constraint(equalTo: backgroundView.safeAreaLayoutGuide.trailingAnchor, constant: -20),
+            backButton.widthAnchor.constraint(equalTo: textFieldsStackView.safeAreaLayoutGuide.widthAnchor),
 //            backButton.centerXAnchor.constraint(equalTo: textFieldsStackView.centerXAnchor)
         ])
         

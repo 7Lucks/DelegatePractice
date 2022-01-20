@@ -32,14 +32,14 @@ class LoginScreenVC: UIViewController {
     
     
     //login label
-    let loginLabel : UILabel = {
-        let loginLabel = UILabel()
-        loginLabel.text = "Login me"
-        loginLabel.isHighlighted = true
-        loginLabel.font = UIFont(name: "Apple SD Gothic Neo Bold", size: 35)
-        loginLabel.textColor = .systemRed
-        loginLabel.translatesAutoresizingMaskIntoConstraints = false
-        return loginLabel
+    let welcomeLabel : UILabel = {
+        let welcomeLabel = UILabel()
+        welcomeLabel.text = "Login me"
+        welcomeLabel.isHighlighted = true
+        welcomeLabel.font = UIFont(name: "Apple SD Gothic Neo Bold", size: 35)
+        welcomeLabel.textColor = .systemRed
+        welcomeLabel.translatesAutoresizingMaskIntoConstraints = false
+        return welcomeLabel
     }()
     
     //login text field
@@ -47,16 +47,36 @@ class LoginScreenVC: UIViewController {
         let loginTF = UITextField()
         loginTF.borderStyle = .roundedRect
         loginTF.placeholder = "Login"
+        loginTF.backgroundColor = .white.withAlphaComponent(0.8)
         return loginTF
     }()
+    //Create an Item on view Programmaticaly
+//    let loginTFLabel: UILabel = {
+//        let loginLabel = UILabel()
+//        loginLabel.text = "Enter your Login"
+//        loginLabel.font = UIFont(name: "Apple SD Gothic Neo Bold", size: 10)
+//
+//        return loginLabel
+//    }()
+//
+    
     
     // paswd text field
     let passwdTF: UITextField = {
         let passwdTF = UITextField()
         passwdTF.borderStyle = .roundedRect
         passwdTF.placeholder = "Password"
+        passwdTF.isSecureTextEntry = true
+        passwdTF.backgroundColor = .white.withAlphaComponent(0.8)
         return passwdTF
     }()
+    
+//    let passwordTFLabel: UILabel = {
+//        let passwordLabel = UILabel()
+//        passwordLabel.text = "Enter your Password"
+//        passwordLabel.font = UIFont(name: "Apple SD Gothic Neo Bold", size: 10)
+//        return passwordLabel
+//    }()
     
     //signIn button
     let signInButton: UIButton = {
@@ -86,7 +106,7 @@ class LoginScreenVC: UIViewController {
     var textFieldsStackView = UIStackView()
     var buttonsStackView = UIStackView()
     
-    
+    var topAnchor: NSLayoutConstraint? 
     
     //MARK:  viewDidLoad() -
     override func viewDidLoad() {
@@ -96,6 +116,10 @@ class LoginScreenVC: UIViewController {
         setupConstrLoginVC()
         keyboardObserverNotification()
         textFieldDelegates()
+    }
+    //deinit VC
+    deinit{
+        removeKeyboardNotifications()
     }
     
     
@@ -116,16 +140,24 @@ class LoginScreenVC: UIViewController {
     
     //MARK: subviews -
     
+    
+    
+    
+    // MARK: QUESTION : реально ли сделать чтоб лейблы и текст филды имели разный спейсинг внутри стеквью)) или убрать стеквью и сделать верстку 
     func setupItemsAtLoginVc(){
         
         view.addSubview(scrollView)
         
         scrollView.addSubview(backgroundView)
-        backgroundView.addSubview(loginLabel)
-        textFieldsStackView = UIStackView(arrangedSubviews: [loginTF, passwdTF], axis: .vertical, spacing: 15,  distribution: .fillEqually)
+        backgroundView.addSubview(welcomeLabel)
+//        backgroundView.addSubview(loginTFLabel)
+//        backgroundView.addSubview(passwordTFLabel)
+        textFieldsStackView = UIStackView(arrangedSubviews: [loginTF,/*loginTFLabel,*/ passwdTF, /*passwordTFLabel*/], axis: .vertical, spacing: 5,  distribution: .fillProportionally)
         backgroundView.addSubview(textFieldsStackView)
-        buttonsStackView = UIStackView(arrangedSubviews: [signInButton, signUpButton], axis: .horizontal, spacing: 15, distribution: .fillEqually)
+        buttonsStackView = UIStackView(arrangedSubviews: [signInButton, signUpButton], axis: .horizontal, spacing: 15, distribution: .fillProportionally)
         backgroundView.addSubview(buttonsStackView)
+        
+       
         
     }// end of setupItemsAtLoginVc()
    
@@ -147,20 +179,21 @@ extension LoginScreenVC{
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
-    // MARK: QUESTION : loginLabel.topAnchor.constraint(equalTo: 250)
     //when keyboard shown
     @objc func keyboardWillShow(notification: Notification){
 //        print ("keyboard show")
         let userInfo = notification.userInfo //обращение к юзер инфо и через юзер инфо достаю высоту клавиатуры
         let keyboardHeight = (userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue //получаем высоту клавиатуры в формате CGRect
         scrollView.contentOffset = CGPoint(x: 0, y: keyboardHeight.height / 3)
-//        loginLabel.topAnchor.constraint(equalTo: 250) // как сдвинуть отдельный элемент при вызове контент оффсета у скроллвью
+//        welcomeLabel.topAnchor.constraint(equalTo: backgroundView.safeAreaLayoutGuide.topAnchor, constant: 290).isActive = true // как сдвинуть отдельный элемент при вызове контент оффсета у скроллвью
+//        topAnchor?.constant = 250
     }
     // when keyboard hidden
     @objc func keyboardWillHide(notification: Notification){
 //        print("keyboard hide")
         // при скрытии клавы просто возвращаем content offset to 0
         scrollView.contentOffset = CGPoint.zero
+//        topAnchor?.constant = 200
     }
     
 }
