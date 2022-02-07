@@ -20,7 +20,7 @@ class RegistrationVC: UIViewController {
     let backgroundView: UIView = {
         let backgroundView = UIView()
         //https://proswift.ru/uiview-i-prozrachnost-uicolor/ альфа только для цвета бекграунда
-        backgroundView.backgroundColor = .lightGray.withAlphaComponent(0.89)
+        backgroundView.backgroundColor = .white.withAlphaComponent(0.89)
         backgroundView.translatesAutoresizingMaskIntoConstraints = false
         return backgroundView
     }()
@@ -50,7 +50,7 @@ class RegistrationVC: UIViewController {
     let labelNameTF: UILabel = {
         let label = UILabel()
         label.text = "Enter your name"
-        label.textColor = .white
+        label.textColor = .gray
         label.font = UIFont(name: "Apple SD Gothic Neo Bold", size: 10)
         return label
     }()
@@ -68,7 +68,7 @@ class RegistrationVC: UIViewController {
     let labelPasswordTF: UILabel = {
         let label = UILabel()
         label.text = "Enter your password"
-        label.textColor = .white
+        label.textColor = .gray
         label.font = UIFont(name: "Apple SD Gothic Neo Bold", size: 10)
         return label
     }()
@@ -86,7 +86,7 @@ class RegistrationVC: UIViewController {
     let labelEmailTF: UILabel = {
         let label = UILabel()
         label.text = "Enter your e-mail"
-        label.textColor = .white
+        label.textColor = .gray
         label.font = UIFont(name: "Apple SD Gothic Neo Bold", size: 10)
         return label
     }()
@@ -134,6 +134,9 @@ class RegistrationVC: UIViewController {
         textFieldDelegates()
 
     }
+    deinit{
+        removeKeyboardNotifications()
+    }
     
     //MARK: subviews -
     func setupItemsAtRegistrationVc(){
@@ -149,7 +152,7 @@ class RegistrationVC: UIViewController {
         backgroundView.addSubview(backButton)
     }
 
-}
+}//end of registration VC
 
 // TODO: textfield validation  https://www.youtube.com/watch?v=5Rn6JJAuyK0  проверочные тектс поля  при наборе почты или пароля, а так же на окне регистрации
 // https://www.youtube.com/watch?v=jY9t5rX8wHE  dismiss the keyboard // keyboard observerse
@@ -198,6 +201,30 @@ extension RegistrationVC{
 }
 
 extension RegistrationVC: UITextFieldDelegate{
+  
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+//        print (string) // выводит поочередно все буквы\цифры которые печатем
+        
+        // так как нейм тф опциональный ставлю по умолчанию пустую строку и добавляю символы которые получаем в метод
+        let text = (nameTF.text ?? "") + string
+        let result: String
+        
+        //range = когда символы добавляются то значение range будет равно 0. когда значения удаляются значение будет равно 1. Значит в блок == 1 попадаем при удалении символов
+        if range.length == 1{
+            let end = text.index(text.startIndex, offsetBy: text.count - 1 )
+            result = String(text[text.startIndex..<end]) // записываем в массив все значения от startIndex до end
+        }else{
+            result = text
+        }
+        
+        nameTF.text = result
+        
+        return false
+    }
+    
+    
     
     func textFieldDelegates(){
         nameTF.delegate = self

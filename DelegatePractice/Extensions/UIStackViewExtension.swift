@@ -15,7 +15,7 @@ extension UIStackView{
            axis: NSLayoutConstraint.Axis,
            spacing: CGFloat,
            distribution: UIStackView.Distribution) {
-               
+            
            self.init(arrangedSubviews: arrangedSubviews)
            self.axis = axis
            self.spacing = spacing
@@ -24,4 +24,6 @@ extension UIStackView{
                self.translatesAutoresizingMaskIntoConstraints = false
        }
 }
+
+
 

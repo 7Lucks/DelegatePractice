@@ -106,7 +106,7 @@ class LoginScreenVC: UIViewController {
     var textFieldsStackView = UIStackView()
     var buttonsStackView = UIStackView()
     
-    var topAnchor: NSLayoutConstraint? 
+    var topAnchor: NSLayoutConstraint?
     
     //MARK:  viewDidLoad() -
     override func viewDidLoad() {
